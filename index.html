@@ -5060,6 +5060,7 @@
         });
         // Global variables
         let currentUser = null;
+        let currentPath = null;
         let currentListingId = null;
         let currentMessageThreadId = null;
         let currentOtherUserId = null;
@@ -5247,14 +5248,14 @@
             
             if (path === 'buy') {
                 // Hide hero, show search and listings
-                heroSection.style.display = 'none';
-                searchSection.style.display = 'block';
-                listingsSection.style.display = 'block';
+                if (heroSection) heroSection.style.display = 'none';
+                if (searchSection) searchSection.style.display = 'block';
+                if (listingsSection) listingsSection.style.display = 'block';
                 
                 // Set the college filter to user's college by default
                 if (currentUser && currentUser.college) {
                     const collegeFilter = document.getElementById('collegeFilter');
-                    collegeFilter.value = currentUser.college;
+                    if (collegeFilter) collegeFilter.value = currentUser.college;
                 }
                 
                 loadListings();
@@ -5274,18 +5275,20 @@
             }
 
             // Only show search section if we're on a specific path
-            if (currentPath === 'buy') {
+            if (currentPath === 'buy' && searchSection) {
                 searchSection.style.display = 'block';
             }
             const collegeFilter = document.getElementById('collegeFilter');
-            if (currentUser && currentUser.college) {
+            if (currentUser && currentUser.college && collegeFilter) {
                 collegeFilter.value = currentUser.college;
             }
             
             // Add event listener for college filter change
-            collegeFilter.addEventListener('change', function() {
-                loadListings();
-            });
+            if (collegeFilter) {
+                collegeFilter.addEventListener('change', function() {
+                    loadListings();
+                });
+            }
 
             // ... rest of your code ...
         });
@@ -5910,14 +5913,16 @@
         // Modify your DOMContentLoaded event listener
         document.addEventListener('DOMContentLoaded', () => {
             const collegeFilter = document.getElementById('collegeFilter');
-            if (currentUser && currentUser.college) {
+            if (currentUser && currentUser.college && collegeFilter) {
                 collegeFilter.value = currentUser.college;
             }
             
             // Add event listener for college filter change
-            collegeFilter.addEventListener('change', function() {
-                loadListings();
-            });
+            if (collegeFilter) {
+                collegeFilter.addEventListener('change', function() {
+                    loadListings();
+                });
+            }
         
             // Create skeleton loading cards
             const skeleton = document.getElementById('loadingSkeleton');
