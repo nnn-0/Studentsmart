@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2284,6 +2285,17 @@
     </style>
 </head>
 <body>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <button id="chatFloatingBtn" class="btn btn-primary rounded-circle p-3 shadow-lg" 
+                onclick="showChatModal()" title="Open Chat">
+            <i class="fas fa-comments fa-lg"></i>
+            <span id="unreadMessageCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display: none;">
+                0
+            </span>
+        </button>
+    </div>
+        
+
     <!-- Navigation -->
     <!-- Fixed Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
@@ -2712,7 +2724,7 @@
     </section>
 
     <!-- CTA Section -->
-    <div class="container" id="searchAndListingsContainer" style="display: none;">
+     <div class="container">
         <div class="search-section">
             <div class="row g-3">
                 <div class="col-md-6">
@@ -3862,7 +3874,7 @@
                         <h4 class="member-name">SHANTHA</h4>
                         <p class="member-title">Marketing Team & Content Creator</p>
                         <p class="member-description">
-                            Shantha supports the marketing team by writing clear and creative scripts for StudentsMart’s promotions. As a strong pillar of support to the Marketing Head, She plays a key role in making ideas come alive and helps ensure everything runs smoothly with her teamwork and consistent efforts.
+                            Shantha supports the marketing team by writing clear and creative scripts for StudentsMart’s promotions. As a strong pillar of support to the Marketing Head, She plays a key role in making ideas come alive and helps ensure everything runs smoothly with her teamwork and consistent efforts.
 
                         <div class="social-links">
                             <a href="https://www.linkedin.com/in/shantha-k-9572402b4 " class="social-btn linkedin" title="LinkedIn">
@@ -3871,7 +3883,7 @@
                             <a href="https://github.com/Shanthakothandaraman/" class="social-btn github" title="GitHub">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="tel:+9177804 90015" class="social-btn phone" title="Phone">
+                            <a href="tel:+9177804 90015" class="social-btn phone" title="Phone">
                                 <i class="fas fa-phone"></i>
                             </a>
                         </div>
@@ -4475,136 +4487,388 @@
                 alert('An error occurred');
             });
         }
-        function typeWriter(element, text, speed = 100) {
-            return new Promise((resolve) => {
-                let i = 0;
-                element.classList.add('typing');
-                
-                function type() {
-                    if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        element.classList.add('completed');
-                        resolve();
-                    }
-                }
-                type();
-            });
+
+        function showAboutUs() {
+            const aboutModal = new bootstrap.Modal(document.getElementById('aboutUsModal'));
+            aboutModal.show();
         }
 
-        function clearAndType(element, text, speed = 100, keepCursor = true) {
-            return new Promise((resolve) => {
-                element.innerHTML = '';
-                if (!element.classList.contains('typing')) {
-                    element.classList.add('typing');
-                }
-                
-                // Parse HTML tags and create an array of displayable characters and HTML tags
-                const parts = [];
-                let i = 0;
-                
-                while (i < text.length) {
-                    if (text[i] === '<') {
-                        // Find the closing tag
-                        let tagEnd = text.indexOf('>', i);
-                        if (tagEnd !== -1) {
-                            parts.push(text.substring(i, tagEnd + 1));
-                            i = tagEnd + 1;
-                        } else {
-                            parts.push(text[i]);
-                            i++;
-                        }
-                    } else {
-                        parts.push(text[i]);
-                        i++;
+        function showContactModal() {
+            const contactModal = new bootstrap.Modal(document.getElementById('contactModal'));
+            contactModal.show();
+        }
+        function ShowFAQPageModal(){
+            const FAQPageModal = new bootstrap.Modal(document.getElementById('FAQPageModal'));
+            FAQPageModal.show();
+
+        }
+
+        function showTermsModal() {
+            const termsModal = new bootstrap.Modal(document.getElementById('termsModal'));
+            termsModal.show();
+        }
+
+        function showPrivacyModal() {
+            const privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'));
+            privacyModal.show();
+        }
+
+        // Contact form submission
+        // Form validation script for contact form
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+           
+            // Update every 30 seconds
+            
+            if (contactForm) {
+                // Form submit event handler with validation
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Check form validity using Bootstrap validation
+                    if (!this.checkValidity()) {
+                        event.stopPropagation();
+                        this.classList.add('was-validated');
+                        return;
                     }
-                }
-                
-                let partIndex = 0;
-                function type() {
-                    if (partIndex < parts.length) {
-                        const part = parts[partIndex];
-                        if (part.startsWith('<')) {
-                            // It's an HTML tag, add it without delay
-                            element.innerHTML += part;
-                        } else {
-                            // It's a regular character, add with typing effect
-                            element.innerHTML += part;
+                    
+                    // Get submit button
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    
+                    // Disable button and show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+                    
+                    // Get form data
+                    const formData = {
+                        name: document.getElementById('contactName').value,
+                        email: document.getElementById('contactEmail').value,
+                        subject: document.getElementById('contactSubject').value,
+                        message: document.getElementById('contactMessage').value
+                    };
+                    
+                    // Send email using fetch API to your server endpoint or a service like Formspree
+                    fetch('https://formspree.io/f/myzwpvvp', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
                         }
-                        partIndex++;
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Success:', data);
                         
-                        // Only delay for visible characters, not HTML tags
-                        const delay = part.startsWith('<') ? 0 : speed;
-                        setTimeout(type, delay);
-                    } else {
-                        if (!keepCursor) {
-                            element.classList.remove('typing');
+                        // Show success message
+                        Swal.fire({
+                            title: 'Message Sent!',
+                            text: 'Thank you for contacting us. We will get back to you within 24 hours.',
+                            icon: 'success',
+                            confirmButtonColor: '#0d6efd',
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+                        
+                        // Close modal
+                        const contactModal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                        if (contactModal) {
+                            contactModal.hide();
                         }
-                        element.classList.add('completed');
-                        resolve();
-                    }
-                }
-                type();
-            });
-        }
+                        
+                        // Reset form validation state
+                        this.classList.remove('was-validated');
+                        
+                        // Reset form inputs
+                        this.reset();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        
+                        // Show error message
+                        Swal.fire({
+                            title: 'Message Not Sent',
+                            text: 'Sorry, there was a problem sending your message. Please try again or use another contact method.',
+                            icon: 'error',
+                            confirmButtonColor: '#dc3545'
+                        });
+                    })
+                    .finally(() => {
+                        // Restore button state
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                    });
+                });
 
-        async function startAnimation() {
-            const titleElement = document.querySelector('.typewriter');
+                // Real-time validation feedback
+                const formInputs = contactForm.querySelectorAll('input, textarea');
+                formInputs.forEach(input => {
+                    input.addEventListener('blur', function() {
+                        // Check validity when input loses focus
+                        if (this.checkValidity()) {
+                            this.classList.remove('is-invalid');
+                            this.classList.add('is-valid');
+                        } else {
+                            this.classList.remove('is-valid');
+                            this.classList.add('is-invalid');
+                        }
+                    });
+                });
+            }
             
-            // Array of all texts to type
-            const texts = [
-                'Exchange books, notes, tools - 100% <u>free</u>. 0% commission.',
-                'Made by students. Built for students.',
-                "Don't let your study stuff gather dust - pass it on!"
-            ];
-            
-            let cardsShown = false;
-            
-            // Infinite loop for continuous animation
-            while (true) {
-                // Type each text with delays
-                for (let i = 0; i < texts.length; i++) {
-                    const isLastText = i === texts.length - 1;
-                    
-                    // Keep cursor for all texts except temporarily remove it during the pause after last text
-                    await clearAndType(titleElement, texts[i], 80, true);
-                    
-                    // Show choice cards after first complete cycle
-                    if (!cardsShown && isLastText) {
-                        setTimeout(() => {
-                            const cards = document.querySelectorAll('.choice-card');
-                            cards.forEach((card, index) => {
-                                setTimeout(() => {
-                                    card.classList.add('show');
-                                }, index * 200);
-                            });
-                        }, 1000);
-                        cardsShown = true;
-                    }
-                    
-                    // Wait before typing next text
-                    // Remove cursor during pause after last text, add it back before next cycle
-                    if (isLastText) {
-                        titleElement.classList.remove('typing');
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-                        titleElement.classList.add('typing');
-                    } else {
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-                    }
+            // Check if we're on a buy page (Keep this functionality from your original code)
+            const footer = document.querySelector('footer');
+            if (footer) {
+                if (window.location.pathname.includes('buy') || window.location.href.includes('buy.html')) {
+                    footer.style.display = 'none';
+                } else {
+                    footer.style.display = 'block';
                 }
+            }
+        });
+        // Search functionality
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value;
+            if (query.trim()) {
+                showNotification(`🔍 Searching for "${query}"\n\n📚 Found 45+ textbooks\n💻 Found 12+ laptops\n🧮 Found 8+ calculators\n📝 Found 23+ notes\n\n💡 Tip: Use filters to narrow results!`, 'info');
+            } else {
+                showNotification('🔍 Please enter something to search for!', 'warning');
             }
         }
 
-        // Start the animation when page loads
-        window.addEventListener('load', startAnimation);
-        // Function to show sold modal
-        // Track current listing ID
+        function quickSearch(category) {
+            document.getElementById('searchInput').value = category;
+            const categoryInfo = {
+                'textbooks': '📚 Found 450+ textbooks\n🔥 Most popular: Engineering (120)\n💊 Medical books (85)\n💼 Commerce (95)',
+                'calculator': '🧮 Found 85+ calculators\n⚡ Scientific: 45 units\n📊 Graphing: 25 units\n💰 Financial: 15 units',
+                'laptop': '💻 Found 75+ laptops\n🔥 Gaming laptops: 25\n💼 Business laptops: 30\n🎨 Creative laptops: 20',
+                'notes': '📝 Found 280+ study materials\n📖 Class notes: 120 sets\n📊 Exam guides: 95 items\n🎯 Quick refs: 65 items'
+            };
+            
+            showNotification(`🔍 Quick search: ${category}\n\n${categoryInfo[category] || 'Loading results...'}`, 'success');
+        }
 
+        // Action handlers
+        function handleAction(action) {
+            const messages = {
+                'sell': '🚀 Ready to sell your items!\n\n📸 Take great photos\n💰 Set competitive prices\n📍 Choose meetup spots\n✅ Start earning today!',
+                'browse': '🔍 Finding items near you!\n\n📚 Found 250+ items on campus\n💻 Tech: 75 listings\n🧮 Calculators: 50 available\n🔬 Lab gear: 45 options',
+                'signup': '🎉 Welcome to StudentsMart!\n\n👉 Campus email gets bonus\n💰 0% fees for first 3 listings\n🛍️ Early access to new features\n✅ Verification takes 2 minutes',
+                'learn': '📚 How StudentsMart Works\n\n1️⃣ List items in 2 minutes\n2️⃣ Buyers message you\n3️⃣ Meet on campus\n4️⃣ Get paid instantly\n\n💡 Pro tip: Books rent fastest!'
+            };
+            
+            showNotification(messages[action] || 'Action completed successfully!', 'success');
+        }
 
-// Show the sold modal
-        
+        function handleCategory(categoryName) {
+            const categoryInfo = {
+                'Textbooks': '📚 Found 450+ textbooks\nEngineering: 120 books\nMedical: 85 books\nCommerce: 95 books\nArts: 65 books',
+                'Calculators': '🧮 Found 85+ calculators\nScientific: 45 units\nGraphing: 25 units\nFinancial: 15 units',
+                'Lab Equipment': '🔬 Found 200+ lab items\nMicroscopes: 25 units\nGlassware: 85 sets\nSafety gear: 90 items',
+                'Tech & Gadgets': '💻 Found 320+ tech items\nLaptops: 45 units\nTablets: 35 units\nAudio: 95 items',
+                'Notes & Guides': '📝 Found 280+ materials\nClass notes: 120 sets\nExam guides: 95 items\nCheat sheets: 65 items',
+                'Art Supplies': '🎨 Found 150+ art items\nDrawing tools: 45 sets\nPaints: 35 sets\nPortfolios: 25 items'
+            };
+            
+            showNotification(`📚 Exploring ${categoryName}!\n\n${categoryInfo[categoryName] || 'Loading items...'}`, 'info');
+        }
+
+        function handlePrice(action, itemName, price) {
+            const actionText = action === 'rent' ? 'rent' : 'buy';
+            const extraInfo = action === 'rent' ? 
+                '\n📅 Available from tomorrow\n📍 Meet @ Central Library\n⏱️ 2-day minimum rental\n💳 Pay securely in app' :
+                '\n📦 Meet for inspection first\n💳 Secure payment via app\n✅ 7-day return guarantee\n📞 Chat with seller';
+            
+            showNotification(`🛒 Great choice!\n\nYou want to ${actionText} "${itemName}" for ${price}${extraInfo}`, 'success');
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #00B894, #008B74)' : 
+                           type === 'error' ? 'linear-gradient(135deg, #E17055, #D63031)' :
+                           type === 'warning' ? 'linear-gradient(135deg, #FDCB6E, #E17055)' :
+                           'linear-gradient(135deg, #6C5CE7, #5649D6)'};
+                color: white;
+                padding: 1.2rem 1.8rem;
+                border-radius: 12px;
+                font-size: 0.95rem;
+                font-weight: 500;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease-out;
+                max-width: 350px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.2);
+                white-space: pre-line;
+                line-height: 1.6;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease-out';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 5000);
+        }
+
+        // Animate stats on scroll
+        function animateStatsNumbers() {
+            const stats = [
+                { id: 'activeListings', target: 1250, suffix: '+' },
+                { id: 'happyStudents', target: 5200, suffix: '+' },
+                { id: 'campusesServed', target: 58, suffix: '+' },
+                { id: 'moneySaved', target: 2500000, suffix: '+', prefix: '₹', format: 'money' }
+            ];
+
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                if (element) {
+                    const observer = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting) {
+                            animateNumber(element, stat);
+                            observer.disconnect();
+                        }
+                    });
+                    observer.observe(element);
+                }
+            });
+        }
+
+        function animateNumber(element, config) {
+            let current = 0;
+            const increment = config.target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= config.target) {
+                    current = config.target;
+                    clearInterval(timer);
+                }
+                
+                let displayValue = Math.floor(current);
+                if (config.format === 'money' && displayValue >= 1000000) {
+                    displayValue = (displayValue / 1000000).toFixed(1) + 'M';
+                } else if (displayValue >= 1000) {
+                    displayValue = (displayValue / 1000).toFixed(1) + 'K';
+                }
+                
+                element.textContent = (config.prefix || '') + displayValue + (config.suffix || '');
+            }, 20);
+        }
+
+        // Search input enter key support
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animate class
+            document.querySelectorAll('.animate').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Animate stats
+            animateStatsNumbers();
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+                }
+            });
+
+            // Add animation styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(30px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes slideOutRight {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(30px);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+        // Mobile Menu Toggle Function
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.getElementById('navLinks');
+                const menuToggle = document.querySelector('.mobile-menu-toggle');
+                
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navbar = document.querySelector('.navbar');
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!navbar.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
         document.addEventListener('DOMContentLoaded', function() {
             const yearDropdown = document.getElementById('propertyYear');
             if (yearDropdown) {
@@ -4951,65 +5215,40 @@
         });
         
         // Enhanced JavaScript functionality
-        let currentPath = null;
         const modals = {
             login: new bootstrap.Modal(document.getElementById('loginModal')),
             register: new bootstrap.Modal(document.getElementById('registerModal')),
             createListing: new bootstrap.Modal(document.getElementById('createListingModal'))
         };
 
-        // Test function to debug issues
-        function testFunction() {
-            console.log('Test function called');
-            console.log('Current user:', currentUser);
-            console.log('Hero section:', document.querySelector('.hero'));
-            console.log('Search container:', document.getElementById('searchAndListingsContainer'));
-            console.log('Current path:', currentPath);
-            
-            // Test the handlePathSelection function
-            handlePathSelection('buy');
-        }
-
         // Add this function to handle path selection
         // Update the handlePathSelection function:
         function handlePathSelection(path) {
-            console.log('handlePathSelection called with path:', path);
             currentPath = path;
             
             if (!currentUser) {
-                console.log('No current user, showing login modal');
                 showLoginModal();
                 return;
             }
             
-            console.log('Current user:', currentUser);
-            const heroSection = document.querySelector('.hero');
-            const searchAndListingsContainer = document.getElementById('searchAndListingsContainer');
-            
-            console.log('Hero section found:', !!heroSection);
-            console.log('Search container found:', !!searchAndListingsContainer);
+            const heroSection = document.querySelector('.hero-section');
+            const searchSection = document.querySelector('.search-section');
+            const listingsSection = document.getElementById('listingsSection');
             
             if (path === 'buy') {
-                console.log('Showing buy interface');
                 // Hide hero, show search and listings
-                if (heroSection) {
-                    heroSection.style.display = 'none';
-                    console.log('Hero section hidden');
-                }
-                if (searchAndListingsContainer) {
-                    searchAndListingsContainer.style.display = 'block';
-                    console.log('Search container shown');
-                }
+                heroSection.style.display = 'none';
+                searchSection.style.display = 'block';
+                listingsSection.style.display = 'block';
                 
                 // Set the college filter to user's college by default
                 if (currentUser && currentUser.college) {
                     const collegeFilter = document.getElementById('collegeFilter');
-                    if (collegeFilter) collegeFilter.value = currentUser.college;
+                    collegeFilter.value = currentUser.college;
                 }
                 
                 loadListings();
             } else if (path === 'sell') {
-                console.log('Showing sell interface');
                 showCreateListing();
             }
         }
@@ -5019,14 +5258,14 @@
             // ... existing code ...
 
             // Hide search section by default on home page
-            const searchAndListingsContainer = document.getElementById('searchAndListingsContainer');
-            if (searchAndListingsContainer) {
-                searchAndListingsContainer.style.display = 'none';
+            const searchSection = document.querySelector('.search-section');
+            if (searchSection) {
+                searchSection.style.display = 'none';
             }
 
             // Only show search section if we're on a specific path
             if (currentPath === 'buy') {
-                searchAndListingsContainer.style.display = 'block';
+                searchSection.style.display = 'block';
             }
             const collegeFilter = document.getElementById('collegeFilter');
             if (currentUser && currentUser.college) {
@@ -5144,12 +5383,12 @@
                 });
                 
                 // Reset any path-specific UI elements
-                const heroSection = document.querySelector('.hero');
-                const searchAndListingsContainer = document.getElementById('searchAndListingsContainer');
+                const heroSection = document.querySelector('.hero-section');
+                const listingsSection = document.getElementById('listingsSection');
                 
                 // Show hero section (home page) and hide listings section
-                if (heroSection) heroSection.style.display = 'flex';
-                if (searchAndListingsContainer) searchAndListingsContainer.style.display = 'none';
+                heroSection.style.display = 'flex';
+                listingsSection.style.display = 'none';
                 
                 // Reset current path
                 currentPath = null;
@@ -5165,11 +5404,6 @@
 
         // Listing Functions
         async function loadListings() {
-            if (!currentUser) {
-                showAlert('Please Login', 'You need to login to browse listings', 'warning');
-                return;
-            }
-            
             showLoading();
             try {
                 // Get filters with proper encoding
@@ -5606,17 +5840,14 @@
         // Check session status on page load
         async function checkSession() {
             try {
-                console.log('Checking session...');
                 const response = await fetch('/check-session', {
                     credentials: 'same-origin'
                 });
                 
                 if (response.ok) {
                     const data = await response.json();
-                    console.log('Session check response:', data);
                     if (data.authenticated) {
                         currentUser = data.user;
-                        console.log('User authenticated:', currentUser);
                         
                         // Clear any existing admin status in localStorage first
                         if (!currentUser.is_admin) {
@@ -5655,7 +5886,6 @@
                             showAdminDashboard();
                         }
                     } else {
-                        console.log('User not authenticated');
                         // Not authenticated, clear any admin status
                         localStorage.removeItem('isAdmin');
                         localStorage.removeItem('adminDashboardOpen');
@@ -5669,7 +5899,6 @@
         // Event Listeners
         // Modify your DOMContentLoaded event listener
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOMContentLoaded event fired');
             const collegeFilter = document.getElementById('collegeFilter');
             if (currentUser && currentUser.college) {
                 collegeFilter.value = currentUser.college;
@@ -5698,7 +5927,6 @@
             }
         
             // Check if user is logged in
-            console.log('Calling checkSession...');
             checkSession();
             populateCollegeDropdowns();
            
@@ -5726,11 +5954,13 @@
         // Add this function to handle the my-listings page load
         function initializeMyListingsPage() {
             if (window.location.pathname === '/my-listings') {
-              const heroSection = document.querySelector('.hero');
-              const searchAndListingsContainer = document.getElementById('searchAndListingsContainer');
+              const heroSection = document.querySelector('.hero-section');
+              const searchSection = document.querySelector('.search-section');
+              const listingsSection = document.getElementById('listingsSection');
               
               if (heroSection) heroSection.style.display = 'none';
-              if (searchAndListingsContainer) searchAndListingsContainer.style.display = 'block';
+              if (searchSection) searchSection.style.display = 'none';
+              if (listingsSection) listingsSection.style.display = 'block';
               
               // Show loading state
               const listingsGrid = document.getElementById('listingsGrid');
@@ -5824,11 +6054,11 @@
         // Add this function to handle the wishlist page initialization
         function initializeWishlistPage() {
             if (window.location.pathname === '/my-wishlist') {
-                const heroSection = document.querySelector('.hero');
-                const searchAndListingsContainer = document.getElementById('searchAndListingsContainer');
+                const heroSection = document.querySelector('.hero-section');
+                const searchSection = document.querySelector('.search-section');
                 
                 if (heroSection) heroSection.style.display = 'none';
-                if (searchAndListingsContainer) searchAndListingsContainer.style.display = 'block';
+                if (searchSection) searchSection.style.display = 'none';
                 
                 // Show loading state
                 const listingsGrid = document.getElementById('listingsGrid');
@@ -9520,244 +9750,6 @@
             // Load chats if needed
             loadChats();
         }
-        // Search functionality
-        function handleSearch() {
-            const query = document.getElementById('searchInput').value;
-            if (query.trim()) {
-                showNotification(`🔍 Searching for "${query}"\n\n📚 Found 45+ textbooks\n💻 Found 12+ laptops\n🧮 Found 8+ calculators\n📝 Found 23+ notes\n\n💡 Tip: Use filters to narrow results!`, 'info');
-            } else {
-                showNotification('🔍 Please enter something to search for!', 'warning');
-            }
-        }
-
-        function quickSearch(category) {
-            document.getElementById('searchInput').value = category;
-            const categoryInfo = {
-                'textbooks': '📚 Found 450+ textbooks\n🔥 Most popular: Engineering (120)\n💊 Medical books (85)\n💼 Commerce (95)',
-                'calculator': '🧮 Found 85+ calculators\n⚡ Scientific: 45 units\n📊 Graphing: 25 units\n💰 Financial: 15 units',
-                'laptop': '💻 Found 75+ laptops\n🔥 Gaming laptops: 25\n💼 Business laptops: 30\n🎨 Creative laptops: 20',
-                'notes': '📝 Found 280+ study materials\n📖 Class notes: 120 sets\n📊 Exam guides: 95 items\n🎯 Quick refs: 65 items'
-            };
-            
-            showNotification(`🔍 Quick search: ${category}\n\n${categoryInfo[category] || 'Loading results...'}`, 'success');
-        }
-
-        // Action handlers
-        function handleAction(action) {
-            const messages = {
-                'sell': '🚀 Ready to sell your items!\n\n📸 Take great photos\n💰 Set competitive prices\n📍 Choose meetup spots\n✅ Start earning today!',
-                'browse': '🔍 Finding items near you!\n\n📚 Found 250+ items on campus\n💻 Tech: 75 listings\n🧮 Calculators: 50 available\n🔬 Lab gear: 45 options',
-                'signup': '🎉 Welcome to StudentsMart!\n\n👉 Campus email gets bonus\n💰 0% fees for first 3 listings\n🛍️ Early access to new features\n✅ Verification takes 2 minutes',
-                'learn': '📚 How StudentsMart Works\n\n1️⃣ List items in 2 minutes\n2️⃣ Buyers message you\n3️⃣ Meet on campus\n4️⃣ Get paid instantly\n\n💡 Pro tip: Books rent fastest!'
-            };
-            
-            showNotification(messages[action] || 'Action completed successfully!', 'success');
-        }
-
-        function handleCategory(categoryName) {
-            const categoryInfo = {
-                'Textbooks': '📚 Found 450+ textbooks\nEngineering: 120 books\nMedical: 85 books\nCommerce: 95 books\nArts: 65 books',
-                'Calculators': '🧮 Found 85+ calculators\nScientific: 45 units\nGraphing: 25 units\nFinancial: 15 units',
-                'Lab Equipment': '🔬 Found 200+ lab items\nMicroscopes: 25 units\nGlassware: 85 sets\nSafety gear: 90 items',
-                'Tech & Gadgets': '💻 Found 320+ tech items\nLaptops: 45 units\nTablets: 35 units\nAudio: 95 items',
-                'Notes & Guides': '📝 Found 280+ materials\nClass notes: 120 sets\nExam guides: 95 items\nCheat sheets: 65 items',
-                'Art Supplies': '🎨 Found 150+ art items\nDrawing tools: 45 sets\nPaints: 35 sets\nPortfolios: 25 items'
-            };
-            
-            showNotification(`📚 Exploring ${categoryName}!\n\n${categoryInfo[categoryName] || 'Loading items...'}`, 'info');
-        }
-
-        function handlePrice(action, itemName, price) {
-            const actionText = action === 'rent' ? 'rent' : 'buy';
-            const extraInfo = action === 'rent' ? 
-                '\n📅 Available from tomorrow\n📍 Meet @ Central Library\n⏱️ 2-day minimum rental\n💳 Pay securely in app' :
-                '\n📦 Meet for inspection first\n💳 Secure payment via app\n✅ 7-day return guarantee\n📞 Chat with seller';
-            
-            showNotification(`🛒 Great choice!\n\nYou want to ${actionText} "${itemName}" for ${price}${extraInfo}`, 'success');
-        }
-
-        // Notification system
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background: ${type === 'success' ? 'linear-gradient(135deg, #00B894, #008B74)' : 
-                           type === 'error' ? 'linear-gradient(135deg, #E17055, #D63031)' :
-                           type === 'warning' ? 'linear-gradient(135deg, #FDCB6E, #E17055)' :
-                           'linear-gradient(135deg, #6C5CE7, #5649D6)'};
-                color: white;
-                padding: 1.2rem 1.8rem;
-                border-radius: 12px;
-                font-size: 0.95rem;
-                font-weight: 500;
-                z-index: 10000;
-                animation: slideInRight 0.3s ease-out;
-                max-width: 350px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255,255,255,0.2);
-                white-space: pre-line;
-                line-height: 1.6;
-            `;
-            
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease-out';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 5000);
-        }
-
-        // Animate stats on scroll
-        function animateStatsNumbers() {
-            const stats = [
-                { id: 'activeListings', target: 1250, suffix: '+' },
-                { id: 'happyStudents', target: 5200, suffix: '+' },
-                { id: 'campusesServed', target: 58, suffix: '+' },
-                { id: 'moneySaved', target: 2500000, suffix: '+', prefix: '₹', format: 'money' }
-            ];
-
-            stats.forEach(stat => {
-                const element = document.getElementById(stat.id);
-                if (element) {
-                    const observer = new IntersectionObserver((entries) => {
-                        if (entries[0].isIntersecting) {
-                            animateNumber(element, stat);
-                            observer.disconnect();
-                        }
-                    });
-                    observer.observe(element);
-                }
-            });
-        }
-
-        function animateNumber(element, config) {
-            let current = 0;
-            const increment = config.target / 100;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= config.target) {
-                    current = config.target;
-                    clearInterval(timer);
-                }
-                
-                let displayValue = Math.floor(current);
-                if (config.format === 'money' && displayValue >= 1000000) {
-                    displayValue = (displayValue / 1000000).toFixed(1) + 'M';
-                } else if (displayValue >= 1000) {
-                    displayValue = (displayValue / 1000).toFixed(1) + 'K';
-                }
-                
-                element.textContent = (config.prefix || '') + displayValue + (config.suffix || '');
-            }, 20);
-        }
-
-        // Search input enter key support
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                handleSearch();
-            }
-        });
-
-        // Scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate elements on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all elements with animate class
-            document.querySelectorAll('.animate').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Animate stats
-            animateStatsNumbers();
-
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-                } else {
-                    navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-                }
-            });
-
-            // Add animation styles
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideInRight {
-                    from {
-                        transform: translateX(30px);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-
-                @keyframes slideOutRight {
-                    from {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                    to {
-                        transform: translateX(30px);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        });
-        // Mobile Menu Toggle Function
-        function toggleMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const navLinks = document.getElementById('navLinks');
-                const menuToggle = document.querySelector('.mobile-menu-toggle');
-                
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const navbar = document.querySelector('.navbar');
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (!navbar.contains(e.target)) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
