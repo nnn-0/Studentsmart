@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1450,388 +1451,231 @@
         }
 
         /* Footer */
+        /* Footer Section - Redesigned to match your website theme */
+        /* Revamped Footer Styles */
+        /* Revamped Footer Styles */
+        /* Modern Footer Styles */
+/* Modern Footer Styles */
+        /* Footer Styles */
+        /* StudentsMart Footer - Based on Reference Image */
+/* StudentsMart Footer - Light Theme like Image 1 */
+/* StudentsMart Footer - Light Theme with Borders */
+/* StudentsMart Footer - Light Theme with Borders */
+/* StudentsMart Footer - Light Theme with Complete Border */
         .footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
-            color: var(--white);
-            padding: 5rem 0 2rem;
-            position: relative;
-            overflow: hidden;
+            background-color: #f8f9fa;
+            color: #333333;
+            padding: 60px 0 30px;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            margin: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(108, 92, 231, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(253, 121, 168, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(0, 206, 201, 0.1) 0%, transparent 50%);
-            pointer-events: none;
+        /* Add outline borders around each section */
+        .footer .col-md-2,
+        .footer .col-md-3,
+        .footer .col-md-4 {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 2rem 1.5rem;
+            margin-bottom: 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+        /* Brand Section */
+        .footer .col-md-4:first-child h5 {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-size: 1.5rem !important;
+            font-weight: 700;
+            margin-bottom: 1rem !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer .col-md-4:first-child h5 i {
+            color: #8b5cf6;
+            background: none;
+            -webkit-text-fill-color: #8b5cf6;
+            margin-right: 8px;
+        }
+
+        /* Description text */
+        .footer .col-md-4:first-child p {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.6;
             margin-bottom: 1.5rem;
-            display: inline-block;
-            transition: var(--transition);
         }
 
-        .footer-logo:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 10px rgba(108, 92, 231, 0.5));
+        /* About Us Button - Purple gradient */
+        .footer .btn-outline-light {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .footer-about {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            margin-bottom: 2rem;
+        .footer .btn-outline-light:hover {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Section Headers */
+        .footer h5.text-primary {
+            color: #1f2937 !important;
             font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem !important;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+        /* Navigation Links */
+        .footer .list-unstyled {
+            padding: 0;
+            margin: 0;
         }
 
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+        .footer .list-unstyled li {
+            margin-bottom: 10px;
+        }
+
+        .footer .list-unstyled li a {
+            color: #6b7280 !important;
+            text-decoration: none !important;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
             display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer .list-unstyled li a:hover {
+            color: #374151 !important;
+        }
+
+        /* Icon colors for links */
+        .footer .list-unstyled li a i {
+            color: #8b5cf6;
+            width: 18px;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Information */
+        .footer .col-md-3:last-child ul li {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer .col-md-3:last-child ul li i {
+            color: #8b5cf6;
+            width: 18px;
+            font-size: 0.9rem;
+        }
+
+        /* Social Media Icons */
+        .footer .col-md-3:last-child .mt-3 {
+            margin-top: 1.5rem;
+        }
+
+        .footer .col-md-3:last-child .mt-3 a {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            transition: var(--transition);
-            font-size: 1.3rem;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.1);
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            opacity: 0;
-            transition: var(--transition);
-            border-radius: 50%;
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3);
-            border-color: var(--primary);
-        }
-
-        .social-link:hover::before {
-            opacity: 1;
-        }
-
-        .social-link i {
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-heading {
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 0.8rem;
-            color: var(--white);
-        }
-
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-link {
-            margin-bottom: 1.2rem;
-        }
-
-        .footer-link a {
-            color: rgba(255, 255, 255, 0.8);
+            width: 36px;
+            height: 36px;
+            background-color: #f3f4f6;
+            color: #6b7280;
             text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1rem;
-            padding: 0.5rem 0;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
+            border-radius: 6px;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: 1px solid #e5e7eb;
         }
 
-        .footer-link a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(108, 92, 231, 0.1), transparent);
-            transition: var(--transition);
+        .footer .col-md-3:last-child .mt-3 a:hover {
+            background-color: #8b5cf6;
+            color: #ffffff;
+            border-color: #8b5cf6;
+            transform: translateY(-1px);
         }
 
-        .footer-link a:hover {
-            color: var(--primary-light);
-            transform: translateX(10px);
-            padding-left: 1rem;
-        }
-
-        .footer-link a:hover::before {
-            left: 0;
-        }
-
-        .footer-link a i {
-            font-size: 1.1rem;
-            width: 20px;
-            transition: var(--transition);
-        }
-
-        .footer-link a:hover i {
-            color: var(--accent);
-            transform: scale(1.2);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 3rem;
-            margin-top: 4rem;
-            border-top: 2px solid rgba(255,255,255,0.1);
-            background: linear-gradient(90deg, transparent, rgba(108, 92, 231, 0.1), transparent);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
-            position: relative;
-        }
-
-        .footer-bottom::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 1px;
-        }
-
-        /* Contact info styling */
-        .footer-container ul li {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-            padding: 0.5rem 0;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-        }
-
-        .footer-container ul li i {
-            color: var(--primary-light);
-            font-size: 1.2rem;
-            width: 20px;
-            transition: var(--transition);
-        }
-
-        .footer-container ul li:hover i {
-            color: var(--accent);
-            transform: scale(1.2);
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .student-rating {
-                gap: 0.3rem;
-                padding: 0.6rem;
-                margin-top: 0.8rem;
-            }
-            
-            .star {
-                font-size: 1.3rem;
-            }
-            
-            .rating-text {
-                font-size: 1rem;
-                margin-left: 0.5rem;
-                padding: 0.2rem 0.6rem;
-            }
-            
-            .footer {
-                padding: 4rem 0 2rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 0 1rem;
-            }
-            
-            .footer-logo {
-                font-size: 1.8rem;
-                text-align: center;
-            }
-            
-            .social-links {
-                justify-content: center;
-                gap: 1rem;
-            }
-            
-            .social-link {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-            
-            .footer-heading {
-                font-size: 1.2rem;
-                text-align: center;
-            }
-            
-            .footer-heading::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Animations */
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        /* Scroll animations */
-        .animate {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .animate.in-view {
+        /* Divider */
+        .footer hr {
+            border: none;
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 40px 0 25px;
             opacity: 1;
-            transform: translateY(0);
         }
 
-        /* Mobile Responsive */
+        /* Bottom Copyright Section */
+        .footer .row:last-child p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .footer .text-danger {
+            color: #ef4444 !important;
+        }
+
+        /* Override Bootstrap text-white class for light theme */
+        .footer .text-white {
+            color: #6b7280 !important;
+        }
+
+        .footer .text-white:hover {
+            color: #374151 !important;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
+            .footer {
+                padding: 40px 0 20px;
             }
-
-            .hero-cta {
-                justify-content: center;
+            
+            /* Keep outline borders on mobile */
+            .footer .col-md-2,
+            .footer .col-md-3,
+            .footer .col-md-4 {
+                border: 1px solid #e9ecef;
+                border-radius: 6px;
+                padding: 1.5rem 1rem;
+                margin-bottom: 1rem;
+                background-color: #ffffff;
             }
-
-            .hero-carousel {
-                order: -1;
-                height: 300px;
+            
+            .footer .col-md-4:first-child h5 {
+                font-size: 1.3rem !important;
             }
-
-            .nav-links {
-                display: none;
+            
+            .footer h5.text-primary {
+                font-size: 1rem;
+                margin-bottom: 1rem !important;
             }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-
-            .featured-grid, .student-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .categories-carousel {
-                animation: infiniteScroll 20s linear infinite;
-            }
-
-            .search-input {
-                width: calc(100% - 100px);
+            
+            .footer .col-md-3:last-child .mt-3 a {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
             }
         }
         /* About Us Modal Styles */
@@ -2286,8 +2130,785 @@
                 font-size: 1rem;
             }
         }
-        /* Fixed Navigation Styles */
+        /* Modal Base Styles */
+        /* Basic Modal Styles */
+        .modal-content {
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            border: none;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(108, 92, 231, 0.1);
+            padding: 1.5rem;
+        }
+
+        .modal-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .modal-logo {
+            height: 35px;
+            width: 35px;
+        }
+
+        .modal-site-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .create-account-text {
+            text-align: center;
+            flex: 1;
+        }
+
+        .modal-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* Form Styles */
+        .form-label {
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            border-radius: var(--border-radius);
+            padding: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.1);
+            outline: none;
+        }
+
+        .form-check {
+            margin-bottom: 1rem;
+        }
+
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+
+        /* Conditional Fields */
+        .field-branch, .field-faculty, .field-subject, 
+        .field-softcopy, .field-fileupload, 
+        .field-working-condition, .field-warranty,
+        .rent-field {
+            display: none;
+        }
+
+        /* Terms Summary */
+        .terms-summary {
+            background: rgba(0, 184, 148, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 0.5rem;
+        }
+
+        .terms-summary li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .modal-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .col-md-6 {
+                width: 100%;
+            }
+        }
+        .chat-container {
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .chat-sidebar {
+            border-right: 1px solid #e0e0e0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-sidebar-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .chat-list {
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .chat-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .chat-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .chat-window {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #e5ddd5;
+        }
+
+        .message {
+            max-width: 65%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 7.5px;
+            position: relative;
+        }
+
+        .message.sent {
+            background-color: #dcf8c6;
+            margin-left: auto;
+            border-top-right-radius: 0;
+        }
+
+        .message.received {
+            background-color: white;
+            margin-right: auto;
+            border-top-left-radius: 0;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .chat-input {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .user-avatar img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+
+        .search-box {
+            padding: 10px;
+            background-color: white;
+        }
+
+        .search-box input {
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+        }
+        .message {
+            max-width: 65%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 7.5px;
+            position: relative;
+            word-wrap: break-word;
+        }
+        
+        .message.sent {
+            background-color: #dcf8c6;
+            margin-left: auto;
+            margin-right: 10px;
+            border-top-right-radius: 0;
+        }
+        
+        .message.received {
+            background-color: white;
+            margin-right: auto;
+            margin-left: 10px;
+            border-top-left-radius: 0;
+        }
+        
+        .message-time {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #e5ddd5;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #e5ddd5;
+            display: flex;
+            flex-direction: column;
+            height: calc(80vh - 130px); /* Adjust height to prevent overflow */
+            scroll-behavior: smooth;
+        }
+        
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            min-height: min-content;
+        }
+        
+        .chat-input {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            position: sticky;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        /* Add smooth scrolling to the chat container */
+        .chat-container {
+            height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Additional Chat Styles */
+        .chat-empty-state {
+            text-align: center;
+            color: #6c757d;
+            padding: 2rem;
+        }
+
+        .chat-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .empty-chat-list {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-actions button {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-sidebar-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .search-box .input-group {
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .search-box input:focus {
+            box-shadow: none;
+        }
+
+        .chat-list {
+            height: calc(80vh - 140px);
+            overflow-y: auto;
+        }
+
+        .chat-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .chat-item.active {
+            background-color: #e9ecef;
+        }
+
+        .message {
+            max-width: 75%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.sent {
+            background-color: #dcf8c6;
+            margin-left: auto;
+            margin-right: 10px;
+            border-top-right-radius: 4px;
+        }
+
+        .message.received {
+            background-color: white;
+            margin-right: auto;
+            margin-left: 10px;
+            border-top-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+
+        .online-status {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .online-status::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+        }
+
+        #messageInput {
+            border-radius: 20px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        #messageInput:focus {
+            box-shadow: none;
+            border-color: #3b82f6;
+        }
+
+        #sendMessage {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+        }
+
+        #sendMessage:disabled {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+
+        .user-avatar {
+            position: relative;
+        }
+
+        .user-avatar img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        /* Update modal size */
+        .modal-dialog.modal-lg {
+            max-width: 90vw; /* Makes modal wider */
+            height: 90vh; /* Makes modal taller */
+            margin: 5vh auto; /* Centers the modal with equal margins */
+        }
+
+        .chat-container {
+            height: 90vh; /* Makes the container taller */
+        }
+
+        .chat-list {
+            height: calc(90vh - 140px); /* Adjust chat list height */
+        }
+
+        .chat-messages {
+            height: calc(90vh - 180px); /* Adjust messages container height */
+        }
+
+        /* Ensure the chat window fills the available space */
+        .chat-window {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-empty-state {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 1;
+        }
+        
+        .chat-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+        }
+        
+        .chat-window {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        /* Update the chat content styles */
+        .chat-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Modal and Container Styles */
+        .modal-dialog.modal-lg {
+            max-width: 90vw;
+            height: 90vh;
+            margin: 5vh auto;
+        }
+
+        .chat-container {
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styles */
+        .chat-sidebar {
+            border-right: 1px solid #e0e0e0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-sidebar-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .chat-list {
+            height: calc(90vh - 140px);
+            overflow-y: auto;
+        }
+
+        .chat-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .chat-item.active {
+            background-color: #e9ecef;
+        }
+
+        /* Search Box Styles */
+        .search-box {
+            padding: 10px;
+            background-color: white;
+        }
+
+        .search-box .input-group {
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            border: none;
+            background-color: transparent;
+        }
+
+        .search-box input:focus {
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        /* Chat Window Styles */
+        .chat-window {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-empty-state {
+            text-align: center;
+            color: #6c757d;
+            padding: 2rem;
+        }
+
+        .chat-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .chat-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px;
+        }
+
+        /* Messages Container Styles */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #e5ddd5;
+            height: calc(90vh - 140px);
+        }
+
+        .message-container {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Message Styles */
+        .message {
+            max-width: 75%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.sent {
+            background-color: #dcf8c6;
+            margin-left: auto;
+            margin-right: 10px;
+            border-top-right-radius: 4px;
+        }
+
+        .message.received {
+            background-color: white;
+            margin-right: auto;
+            margin-left: 10px;
+            border-top-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+
+        /* Chat Input Styles */
+        .chat-input {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            position: sticky;
+            bottom: 0;
+        }
+
+        #messageInput {
+            border-radius: 20px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        #messageInput:focus {
+            box-shadow: none;
+            border-color: #3b82f6;
+        }
+
+        #sendMessage {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+        }
+
+        #sendMessage:disabled {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+
+        /* User Avatar Styles */
+        .user-avatar {
+            position: relative;
+        }
+
+        .user-avatar img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* Online Status Styles */
+        .online-status {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .online-status::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+        }
+
+        /* Scroll Button Styles */
+        #scrollBottom {
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: opacity 0.3s;
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
+        }
+
+        #scrollBottom:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .modal-dialog.modal-lg {
+                max-width: 100vw;
+                margin: 0;
+                height: 100vh;
+            }
+
+            .chat-container {
+                height: 100vh;
+            }
+
+            .chat-messages {
+                height: calc(100vh - 140px);
+            }
+
+            .chat-list {
+                height: calc(100vh - 140px);
+            }
+        }
+
+        /* Report Modal Styles */
+        .report-modal .modal-content {
+            border-radius: 15px;
+            position: relative;
+            z-index: 1050;
+        }
+
+        .report-modal .modal-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .report-modal .modal-body {
+            position: relative;
+            z-index: 1051;
+        }
+
+        .report-form {
+            padding: 1rem;
+            position: relative;
+            z-index: 1052;
+        }
+
+        .report-form textarea.form-control {
+            position: relative;
+            z-index: 1053;
+            background: #fff;
+            pointer-events: auto !important;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .report-preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-top: 1rem;
+        }
+        /* Chat Modal Styles */
        
+        
+
+/* Modal Backdrop with Blur Effect */
+        
     </style>
 </head>
 <body>
@@ -2402,7 +3023,7 @@
                         <i class="fas fa-plus-circle"></i>
                         List an Item
                     </button>
-                    <button class="btn btn-secondary" onclick="handlePathSelection('buy')">
+                    <button class="btn btn-secondary" onclick="handlePathSelection('buy');">
                         <i class="fas fa-search"></i>
                         Browse Marketplace
                     </button>
@@ -2427,7 +3048,7 @@
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Study Together" class="carousel-image">
+                        <img src="https://i.ibb.co/twVzqrsc/In-Shot-20250817-185805208.jpg" alt="Study Together" class="carousel-image">
                         <div class="carousel-overlay">
                             <h3 class="carousel-title">💡 Smart Savings</h3>
                             <p class="carousel-desc">Save up to 70% on textbooks and study materials</p>
@@ -2729,59 +3350,8 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-     <div class="container">
-        <div class="search-section">
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" id="searchInput" placeholder="Search items...">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="collegeFilter">
-                        <option value="">All Colleges</option>
-                        <!-- Options will be populated by JavaScript -->
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="categoryFilter">
-                        <option value="">All Categories</option>
-                        <option value="electronic">Electronic</option>
-                        <option value="books">Books</option>
-                        <option value="clothes">Clothes</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="sortFilter">
-                        <option value="newest">Newest First</option>
-                        <option value="price_low">Price: Low to High</option>
-                        <option value="price_high">Price: High to Low</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row g-4" id="listingsGrid">
-            <!-- Listings will be dynamically added here -->
-        </div>
-
-        <!-- Loading Skeleton -->
-        <div class="row g-4" id="loadingSkeleton" style="display: none;">
-            <!-- Skeleton cards will be added here -->
-        </div>
-    </div>
-    <div id="listingsSection" style="display: none;">
-        <!-- Your existing search-section and listings grid will go here -->
-        <div class="container">
-            <div class="search-section">
-                <!-- Your existing search section content -->
-            </div>
-            <div class="row g-4" id="listingsGrid">
-                <!-- Listings will be dynamically added here -->
-            </div>
-        </div>
-    </div>
+    
+    
     <div class="modal fade" id="adminLoginModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -2855,6 +3425,58 @@
             </div>
         </div>
     </div>
+        <div class="container">
+        <div class="search-section">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search items...">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="collegeFilter">
+                        <option value="">All Colleges</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="books">Books</option>
+                        <option value="clothes">Clothes</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="sortFilter">
+                        <option value="newest">Newest First</option>
+                        <option value="price_low">Price: Low to High</option>
+                        <option value="price_high">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4" id="listingsGrid">
+            <!-- Listings will be dynamically added here -->
+        </div>
+
+        <!-- Loading Skeleton -->
+        <div class="row g-4" id="loadingSkeleton" style="display: none;">
+            <!-- Skeleton cards will be added here -->
+        </div>
+    </div>
+    <div id="listingsSection" style="display: none;">
+        <!-- Your existing search-section and listings grid will go here -->
+        <div class="container">
+            <div class="search-section">
+                <!-- Your existing search section content -->
+            </div>
+            <div class="row g-4" id="listingsGrid">
+                <!-- Listings will be dynamically added here -->
+            </div>
+        </div>
+    </div>
 
     <!-- Register Modal -->
     <div class="modal fade" id="registerModal" tabindex="-1">
@@ -2872,58 +3494,49 @@
                 </div>
                 <div class="modal-body">
                     <form id="registerForm">
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" name="full_name" required>
-                        </div>
-                        <!-- In the register modal form, add this after the college select field -->
-                        <div class="mb-3">
-                            <label class="form-label">College Roll Number/ID (optional)</label>
-                            <input type="text" class="form-control" name="roll_number" placeholder="Enter your college roll number if desired">
-                            <small class="text-muted">This will help verify your identity. Must be unique if provided.</small>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Department</label>
-                            <input type="text" class="form-control" name="department" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Year</label>
-                            <select class="form-select" name="year" required>
-                                <option value="">Select Year</option>
-                                <option value="1">1st Year</option>
-                                <option value="2">2nd Year</option>
-                                <option value="3">3rd Year</option>
-                                <option value="4">4th Year</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">College</label>
-                            <select class="form-select" name="college" id="collegeSelect" required>
-                                <option value="">Select Your College</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="acceptTerms" required>
-                            <label class="form-check-label" for="acceptTerms">
-                                I agree to the <a href="#" onclick="showTermsModal()">Terms and Conditions</a> and understand that:
-                            </label>
-                            <div class="terms-summary mt-2 small">
-                                <ul class="list-unstyled">
-                                    <li><i class="fas fa-check-circle text-primary me-2"></i>My listings must be fair and accurate</li>
-                                    <li><i class="fas fa-check-circle text-primary me-2"></i>Violations may result in permanent account suspension</li>
-                                    <li><i class="fas fa-check-circle text-primary me-2"></i>I will maintain privacy of other users</li>
-                                </ul>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" name="full_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Department</label>
+                                <input type="text" class="form-control" name="department" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Year</label>
+                                <select class="form-select" name="year" required>
+                                    <option value="">Select Year</option>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">College</label>
+                                <select class="form-select" name="college" id="collegeSelect" required>
+                                    <option value="">Select Your College</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="acceptTerms" required>
+                                    <label class="form-check-label" for="acceptTerms">
+                                        I agree to the <a href="#" onclick="showTermsModal()">Terms and Conditions</a>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="d-grid">
+                        <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-user-plus me-2"></i>Register
                             </button>
@@ -2947,8 +3560,8 @@
                 <div class="modal-body">
                     <form id="createListingForm" enctype="multipart/form-data">
                         <div class="row g-3">
-                            <!-- Category Selection -->
-                            <div class="col-md-6">
+                            <!-- Row 1: Category, Product Type, Academic Year -->
+                            <div class="col-md-4">
                                 <label class="form-label">Category</label>
                                 <select class="form-select" name="category" id="listingCategory" required>
                                     <option value="">Select Category</option>
@@ -2958,11 +3571,21 @@
                                 </select>
                             </div>
 
-                            <!-- Product Type -->
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="form-label">Product Type</label>
                                 <select class="form-select" name="product_type" id="productType" required>
                                     <option value="">Select Product Type</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="academicYear" class="form-label">Academic Year</label>
+                                <select class="form-select" id="academicYear" name="study_year" required>
+                                    <option value="" selected disabled>Select Year</option>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
                                 </select>
                             </div>
 
@@ -2971,6 +3594,8 @@
                                 <label class="form-label">Title</label>
                                 <input type="text" class="form-control" name="title" required>
                             </div>
+
+                            <!-- Hidden conditional fields -->
                             <div class="col-md-6 field-branch" style="display: none;">
                                 <label class="form-label">Branch</label>
                                 <select class="form-select" name="branch">
@@ -2982,29 +3607,17 @@
                                     <option value="CIVIL">CIVIL</option>
                                 </select>
                             </div>
+
                             <div class="col-md-6 field-faculty" style="display: none;">
                                 <label class="form-label">Faculty Name</label>
                                 <input type="text" class="form-control" name="faculty_name" placeholder="Enter faculty name">
                             </div>
+
                             <div class="col-md-6 field-subject" style="display: none;">
                                 <label class="form-label">Subject</label>
                                 <input type="text" class="form-control" name="subject">
                             </div>
-                            <!-- Add this to your Create Listing form, near the other property details -->
-                            <!-- Add this to your Create Listing form -->
-                            <!-- Add this to your Create Listing form, near the other property details -->
-                            <div class="col-md-6">
-                                <label for="academicYear" class="form-label">Academic Year</label>
-                                <select class="form-select" id="academicYear" name="study_year" required>
-                                    <option value="" selected disabled>Select Year</option>
-                                    <option value="1">1st Year</option>
-                                    <option value="2">2nd Year</option>
-                                    <option value="3">3rd Year</option>
-                                    <option value="4">4th Year</option>
-                                    
-                                </select>
-                            </div>
-                            <!-- Add this after the Subject field -->
+
                             <div class="col-md-6 field-softcopy" style="display: none;">
                                 <label class="form-label">Copy Type</label>
                                 <div class="form-check">
@@ -3022,40 +3635,6 @@
                                 <input type="file" class="form-control" name="document" accept=".pdf,.doc,.docx">
                             </div>
 
-
-                            <!-- Description -->
-                            <div class="col-12">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control" name="description" rows="3" required></textarea>
-                            </div>
-
-                            <!-- Listing Type -->
-                            <div class="col-md-6">
-                                <label class="form-label">Listing Type</label>
-                                <select class="form-select" name="listing_type" id="listingType" required onchange="toggleRentFields()">
-                                    <option value="sell">Sell</option>
-                                    <option value="rent">Rent</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Selling Price field -->
-                            <div class="col-md-6" id="sellPriceField">
-                                <label class="form-label">Selling Price</label>
-                                <input type="number" class="form-control" name="price" required>
-                            </div>
-                            
-                            <!-- Rent-related fields -->
-                            <div class="col-md-6 rent-field" id="rentPriceField" style="display: none;">
-                                <label class="form-label">Rental Price</label>
-                                <input type="number" class="form-control" name="rent_price">
-                            </div>
-                            
-                            <div class="col-md-6 rent-field" id="rentTenureField" style="display: none;">
-                                <label class="form-label">Rental Tenure (Days)</label>
-                                <input type="number" class="form-control" name="rent_tenure" min="1">
-                            </div>
-
-                            <!-- Electronic-specific fields -->
                             <div class="col-md-6 field-working-condition" style="display: none;">
                                 <label class="form-label">Working Condition</label>
                                 <select class="form-select" name="working_condition">
@@ -3074,10 +3653,35 @@
                                 </select>
                             </div>
 
-                            <!-- Book-specific fields -->
-                            
+                            <!-- Description -->
+                            <div class="col-12">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" name="description" rows="3" required></textarea>
+                            </div>
 
+                            <!-- Row: Listing Type and Price -->
+                            <div class="col-md-6">
+                                <label class="form-label">Listing Type</label>
+                                <select class="form-select" name="listing_type" id="listingType" required onchange="toggleRentFields()">
+                                    <option value="sell">Sell</option>
+                                    <option value="rent">Rent</option>
+                                </select>
+                            </div>
                             
+                            <div class="col-md-6" id="sellPriceField">
+                                <label class="form-label">Selling Price</label>
+                                <input type="number" class="form-control" name="price" required>
+                            </div>
+                            
+                            <div class="col-md-6 rent-field" id="rentPriceField" style="display: none;">
+                                <label class="form-label">Rental Price</label>
+                                <input type="number" class="form-control" name="rent_price">
+                            </div>
+                            
+                            <div class="col-md-6 rent-field" id="rentTenureField" style="display: none;">
+                                <label class="form-label">Rental Tenure (Days)</label>
+                                <input type="number" class="form-control" name="rent_tenure" min="1">
+                            </div>
 
                             <!-- Image Upload -->
                             <div class="col-12">
@@ -3109,7 +3713,6 @@
             </div>
         </div>
     </div>
-    
     <!-- Add this right before the closing </body> tag -->
     <!-- Chat Modal -->
 <!-- Chat Modal -->
@@ -3152,11 +3755,7 @@
                     <!-- Right Chat Window -->
                     <div class="col-8 chat-window">
                         <!-- Empty state -->
-                        <div class="chat-empty-state h-100 d-flex flex-column justify-content-center align-items-center text-muted">
-                            <i class="fas fa-comments fa-3x mb-3"></i>
-                            <h5>Welcome to Messages</h5>
-                            <p>Select a conversation to start chatting</p>
-                        </div>
+                        
 
                         <!-- Chat content -->
                         <div class="chat-content h-100" id="chatContent" style="display: none;">
@@ -3719,7 +4318,7 @@
     </div>
    
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <footer class="footer">
         <div class="container">
             <div class="row">
                 <!-- About Us Column -->
@@ -4463,6 +5062,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
     
     <script>
@@ -4869,16 +5469,7 @@
         });
 
         // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const navbar = document.querySelector('.navbar');
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.mobile-menu-toggle');
-            
-            if (!navbar.contains(e.target)) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             const yearDropdown = document.getElementById('propertyYear');
             if (yearDropdown) {
@@ -5235,31 +5826,18 @@
         // Add this function to handle path selection
         // Update the handlePathSelection function:
         function handlePathSelection(path) {
-            currentPath = path;
-            
+    // Check if user is authenticated
             if (!currentUser) {
                 showLoginModal();
                 return;
             }
             
-            const heroSection = document.querySelector('.hero-section');
-            const searchSection = document.querySelector('.search-section');
-            const listingsSection = document.getElementById('listingsSection');
-            
+            // Handle different path selections
             if (path === 'buy') {
-                // Hide hero, show search and listings
-                if (heroSection) heroSection.style.display = 'none';
-                if (searchSection) searchSection.style.display = 'block';
-                if (listingsSection) listingsSection.style.display = 'block';
-                
-                // Set the college filter to user's college by default
-                if (currentUser && currentUser.college) {
-                    const collegeFilter = document.getElementById('collegeFilter');
-                    if (collegeFilter) collegeFilter.value = currentUser.college;
-                }
-                
-                loadListings();
+                // Redirect to buy.html page
+                window.location.href = 'buy.html';
             } else if (path === 'sell') {
+                // Show create listing modal
                 showCreateListing();
             }
         }
@@ -5294,16 +5872,7 @@
         });
 
         // Utility Functions
-        function showLoading() {
-            document.getElementById('loadingSkeleton').style.display = 'flex';
-            document.getElementById('listingsGrid').style.display = 'none';
-        }
         
-        function hideLoading() {
-            document.getElementById('loadingSkeleton').style.display = 'none';
-            document.getElementById('listingsGrid').style.display = 'flex';
-        }
-
         function showAlert(title, text, icon) {
             Swal.fire({
                 title,
@@ -5416,139 +5985,7 @@
         }
 
         // Listing Functions
-        async function loadListings() {
-            showLoading();
-            try {
-                // Get filters with proper encoding
-                const query = encodeURIComponent(document.getElementById('searchInput').value);
-                const category = encodeURIComponent(document.getElementById('categoryFilter').value);
-                const college = currentUser ? encodeURIComponent(currentUser.college) : '';
-                const sort = document.getElementById('sortFilter').value;
         
-                // Sorting logic
-                let sortBy = 'created_at';
-                if (sort === 'price_low') sortBy = 'price_asc';
-                if (sort === 'price_high') sortBy = 'price_desc';
-        
-                console.debug("Fetching listings with params:", { query, category, college, sortBy });
-        
-                const response = await fetch(
-                    `/listings?q=${query}&category=${category}&college=${college}&sort_by=${sortBy}`,
-                    { credentials: 'same-origin' }
-                );
-        
-                if (!response.ok) throw new Error(`HTTP ${response.status} - ${await response.text()}`);
-        
-                const { listings } = await response.json();
-                console.debug("API Response:", listings);
-        
-                const grid = document.getElementById('listingsGrid');
-                grid.innerHTML = '';
-        
-                if (listings.length === 0) {
-                    grid.innerHTML = `
-                        <div class="col-12 text-center my-5">
-                            <h4>No listings found</h4>
-                            ${college ? `<p class="text-muted">Try adjusting filters or search terms</p>` : ''}
-                        </div>`;
-                    return;
-                }
-        
-                listings.forEach(listing => {
-                    console.debug("Processing listing:", listing.id, listing);
-                    const isSoftCopy = Boolean(listing.is_softcopy);
-                    const card = document.createElement('div');
-                    card.className = 'col-md-4 col-lg-3 mb-4';
-        
-                    // Image handling with fallback
-                    const imageUrl = listing.image_url?.startsWith('http') 
-                        ? listing.image_url 
-                        : `/static/${listing.image_url || 'images/placeholder.jpg'}`;
-        
-                    // In your loadListings function, update the card HTML to include faculty name
-                    card.innerHTML = `
-                        <div class="card listing-card h-100">
-                            <div class="card-img-top position-relative">
-                                <img src="${imageUrl}" 
-                                    class="listing-image" 
-                                    alt="${listing.title}"
-                                    loading="lazy">
-                                
-                                ${listing.is_softcopy ? `
-                                <div class="position-absolute top-0 start-0 m-2">
-                                    <span class="badge bg-info">
-                                        <i class="fas fa-file-pdf me-1"></i>Digital Copy
-                                    </span>
-                                </div>` : ''}
-                            </div>
-                        
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${listing.title}</h5>
-                                
-                                ${listing.faculty_name ? `
-                                <div class="faculty-badge mb-2">
-                                    <span class="badge bg-warning text-dark">
-                                        <i class="fas fa-chalkboard-teacher me-1"></i>${listing.faculty_name}
-                                    </span>
-                                </div>` : ''}
-                                
-                                <div class="price-display mb-2">
-                                    ${listing.is_for_rent ?
-                                    `<span class="text-success fw-bold">&#8377;${listing.rent_price}</span>
-                                        <small class="text-muted">/day</small>` :
-                                    `<span class="text-primary fw-bold">&#8377;${listing.price}</span>
-                                        ${listing.is_softcopy ? '<small class="text-muted">(Digital Edition)</small>' : ''}`}
-                                </div>
-                            
-                                <div class="badge-container mb-2">
-                                    <span class="badge bg-primary">${listing.category}</span>
-                                    ${listing.branch ? `<span class="badge bg-secondary">${listing.branch}</span>` : ''}
-                                    ${listing.condition && `<span class="badge bg-secondary">${listing.condition}</span>`}
-                                    ${listing.is_for_rent ?
-                                    '<span class="badge bg-success">For Rent</span>' :
-                                    '<span class="badge bg-info">For Sale</span>'}
-                                </div>
-                            
-                                <div class="seller-info mb-3">
-                                    <small class="text-muted">
-                                        <i class="fas fa-user-circle me-1"></i>
-                                        ${listing.seller?.name || 'Unknown Seller'}
-                                    </small>
-                                    <br>
-                                    <small class="text-muted">
-                                        <i class="fas fa-university me-1"></i>
-                                        ${listing.seller?.college || 'College not specified'}
-                                    </small>
-                                </div>
-                            
-                                ${listing.is_softcopy ?
-                                    `<a href="/download/${listing.id}" 
-                                        class="btn btn-success btn-download w-100 mb-2"
-                                        onclick="return handleDownload(${listing.id}, '${listing.title}', event)">
-                                        <i class="fas fa-download me-2"></i>Download PDF
-                                    </a>` :
-                                    `<button class="btn btn-primary w-100 mb-2" 
-                                            onclick="contactSeller(${listing.id})">
-                                        <i class="fas fa-envelope me-2"></i>Contact Seller
-                                    </button>`}
-                            
-                                <button id="wishlist-btn-${listing.id}" 
-                                        class="btn btn-outline-primary w-100 mt-auto" 
-                                        onclick="addToWishlist(${listing.id})">
-                                    <i class="fas fa-heart me-2"></i>Wishlist
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Listing load error:', error);
-                showAlert('Error', `Failed to load listings: ${error.message}`, 'error');
-            } finally {
-                hideLoading();
-            }
-        }
         // Add this to your main.js file or include it as a script
         (async function debugAPI() {
             try {
@@ -5952,118 +6389,30 @@
             document.getElementById('collegeFilter').addEventListener('change', loadListings);
         
             // Initialize my listings page if we're on that page
-            initializeMyListingsPage();
+            
             
             // Initialize wishlist page if we're on that page
-            initializeWishlistPage();
+            
         });
         async function showMyListings() {
             if (!currentUser) {
                 showAlert('Please Login', 'You need to login to view your listings', 'warning');
                 return;
             }
-            // Open in new tab
-            window.open('/my-listings', '_blank');
+            // Open the dedicated my-listings page
+            window.open('/my-listings.html', '_blank');
         }
 
         // Add this function to handle the my-listings page load
-        function initializeMyListingsPage() {
-            if (window.location.pathname === '/my-listings') {
-              const heroSection = document.querySelector('.hero-section');
-              const searchSection = document.querySelector('.search-section');
-              const listingsSection = document.getElementById('listingsSection');
-              
-              if (heroSection) heroSection.style.display = 'none';
-              if (searchSection) searchSection.style.display = 'none';
-              if (listingsSection) listingsSection.style.display = 'block';
-              
-              // Show loading state
-              const listingsGrid = document.getElementById('listingsGrid');
-              if (listingsGrid) {
-                listingsGrid.innerHTML = '<div class="text-center w-100 py-5"><i class="fas fa-spinner fa-spin fa-2x"></i></div>';
-                
-                // Load my listings
-                fetch('/api/my-listings', {
-                  credentials: 'same-origin'
-                })
-                .then(response => response.json())
-                .then(data => {
-                  // Create the header with title and create button
-                  listingsGrid.innerHTML = `
-                    <div class="col-12 mb-4">
-                      <div class="d-flex justify-content-between align-items-center">
-                        <h2 class="mb-0">My Listings</h2>
-                        <button class="btn btn-primary" onclick="showCreateListing()">
-                          <i class="fas fa-plus-circle me-2"></i>Create New Listing
-                        </button>
-                      </div>
-                    </div>
-                  `;
-                  
-                  if (data.listings.length === 0) {
-                    listingsGrid.innerHTML += `
-                      <div class="col-12 text-center">
-                        <div class="alert alert-info">
-                          <i class="fas fa-info-circle me-2"></i>
-                          You haven't created any listings yet.
-                        </div>
-                      </div>
-                    `;
-                    return;
-                  }
-                  
-                  // Add each listing to the grid
-                  data.listings.forEach(listing => {
-                    const imageUrl = listing.image_url.startsWith('http') ? 
-                      listing.image_url : `/static/${listing.image_url}`;
-                    
-                    listingsGrid.innerHTML += `
-                      <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                          <img src="${imageUrl}" class="card-img-top" alt="${listing.title}" 
-                            style="height: 200px; object-fit: cover;">
-                          <div class="card-body">
-                            <h5 class="card-title">${listing.title}</h5>
-                            <p class="card-text text-muted">&#8377${listing.price}</p>
-                            <p class="card-text">${listing.description.substring(0, 100)}${listing.description.length > 100 ? '...' : ''}</p>
-                            <div class="d-flex gap-2 mb-3">
-                              <span class="badge bg-primary">${listing.category}</span>
-                              <span class="badge bg-secondary">${listing.condition}</span>
-                            </div>
-                            <div class="d-flex gap-2">
-                              
-                              <button class="btn btn-outline-danger btn-sm flex-grow-1" 
-                                onclick="deleteListing(${listing.id})">
-                                <i class="fas fa-trash me-2"></i>Delete
-                              </button>
-                              
-                              <button class="btn btn-warning btn-sm me-1" onclick="showSoldModal(${listing.id})" title="Mark as Sold">
-                                <i class="fas fa-check-circle"></i> Sold
-                              </button>
-
-                              
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    `;
-                  });
-                })
-                .catch(error => {
-                  showAlert('Error', error.message, 'error');
-                });
-              }
-            }
-          }
+        
         
         async function showWishlist() {
             if (!currentUser) {
                 showAlert('Please Login', 'You need to login to view your wishlist', 'warning');
                 return;
             }
-            
-            // Redirect to the wishlist page
-            window.location.href = '/my-wishlist';
+            // Open the dedicated my-wishlist page
+            window.open('/my-wishlist.html', '_blank');
         }
         
         // Add this function to handle the wishlist page initialization
@@ -6143,6 +6492,14 @@
                 }
             }
         }
+        console.log(typeof bootstrap);
+
+// Test if the dropdown element exists
+        console.log(document.getElementById('userDropdown'));
+
+        // Manually trigger dropdown
+        const dropdown = new bootstrap.Dropdown(document.getElementById('userDropdown'));
+        dropdown.toggle();
         
         // Add this function to remove items from wishlist
         async function removeFromWishlist(wishlistId) {
@@ -7260,10 +7617,13 @@
                     
                     // Reset form
                     this.reset();
-                    document.getElementById('imagePreview').style.display = 'none';
+                    const imagePreview = document.getElementById('imagePreview');
+                    if (imagePreview) {
+                        imagePreview.style.display = 'none';
+                    }
                     
-                    // Force redirect to buy page
-                    handlePathSelection('buy');
+                    // Redirect to buy.html page
+                    window.location.href = 'buy.html';
                     
                 } else {
                     throw new Error(data.error || 'Failed to create listing');
