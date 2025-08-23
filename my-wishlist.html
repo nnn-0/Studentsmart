@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - Campus Marketplace</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.min.css">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-img-top {
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .badge {
+            font-size: 0.75rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .wishlist-heart {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <a href="/" class="back-btn">
+        <i class="fas fa-arrow-left me-2"></i>Back to Home
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-store me-2"></i>Campus Marketplace
+            </a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text text-white">
+                    <i class="fas fa-heart wishlist-heart me-2"></i>My Wishlist
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Listings Section (This is what your code looks for) -->
+        <section id="listingsSection" style="display: block;">
+            <div class="container-fluid">
+                <div id="listingsGrid" class="row">
+                    <!-- Your wishlist items will be populated here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Global variables
+        let currentUser = null;
+        
+        // Your exact authentication check function
+        async function checkAuthStatus() {
+            try {
+                const response = await fetch('/check-session', {
+                    credentials: 'same-origin'
+                });
+               
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.authenticated) {
+                        currentUser = data.user;
+                        updateAuthUI();
+                    } else {
+                        console.log('Not authenticated');
+                        // Show login required message
+                        document.getElementById('listingsGrid').innerHTML = `
+                            <div class="col-12 text-center">
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    <strong>Please login to view your wishlist</strong>
+                                    <br><br>
+                                    <a href="/" class="btn btn-primary">
+                                        <i class="fas fa-home me-2"></i>Go to Home Page
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to check auth status:', error);
+            }
+        }
+        
+        // Update authentication UI
+        function updateAuthUI() {
+            const userName = document.querySelector('.navbar-text');
+            if (userName && currentUser) {
+                userName.innerHTML = `<i class="fas fa-heart wishlist-heart me-2"></i>Welcome, ${currentUser.full_name || currentUser.email}`;
+            }
+        }
+        
+        // Enhanced showAlert function with SweetAlert2
+        function showAlert(title, message, type) {
+            const iconType = type === 'error' ? 'error' : 
+                           type === 'warning' ? 'warning' : 
+                           type === 'success' ? 'success' : 'info';
+            
+            Swal.fire({
+                title: title,
+                text: message,
+                icon: iconType,
+                timer: 3000,
+                showConfirmButton: true,
+                confirmButtonText: 'OK'
+            });
+        }
+        
+        // Loading functions
+        function showLoading() {
+            // Can be empty or add your loading logic
+        }
+        
+        function hideLoading() {
+            // Can be empty or add your loading logic
+        }
+        
+        // Fixed initializeWishlistPage function with proper error handling
+        function initializeWishlistPage() {
+            // Show loading state
+            const listingsGrid = document.getElementById('listingsGrid');
+            if (!listingsGrid) {
+                console.error('listingsGrid element not found');
+                return;
+            }
+            
+            listingsGrid.innerHTML = '<div class="text-center w-100 py-5"><i class="fas fa-spinner fa-spin fa-2x"></i><p class="mt-2">Loading your wishlist...</p></div>';
+            
+            // Load wishlist items
+            fetch('/api/wishlist', {
+                credentials: 'same-origin'
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Wishlist data received:', data);
+                
+                // Handle different possible response formats
+                let items = [];
+                if (data && data.items && Array.isArray(data.items)) {
+                    items = data.items;
+                } else if (data && Array.isArray(data)) {
+                    items = data;
+                } else {
+                    console.warn('Unexpected data format:', data);
+                    items = [];
+                }
+                
+                // Create the header with title
+                listingsGrid.innerHTML = `
+                <div class="col-12 mb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="mb-0">
+                            <i class="fas fa-heart wishlist-heart me-2"></i>My Wishlist
+                        </h2>
+                        <span class="badge bg-primary fs-6">${items.length} items</span>
+                    </div>
+                </div>
+                `;
+                
+                if (items.length === 0) {
+                    listingsGrid.innerHTML += `
+                    <div class="col-12 text-center">
+                        <div class="alert alert-info">
+                            <i class="fas fa-heart-broken fa-2x mb-3 text-muted"></i>
+                            <h4>Your wishlist is empty</h4>
+                            <p class="mb-3">Browse listings to add items to your wishlist.</p>
+                            <a href="/" class="btn btn-primary">
+                                <i class="fas fa-search me-2"></i>Browse Listings
+                            </a>
+                        </div>
+                    </div>
+                    `;
+                    return;
+                }
+                
+                // Add each wishlist item to the grid with null checks
+                items.forEach(item => {
+                    if (!item || !item.listing) {
+                        console.warn('Invalid item:', item);
+                        return;
+                    }
+                    
+                    const listing = item.listing;
+                    const imageUrl = (listing.image_url && listing.image_url.startsWith('http')) ? 
+                        listing.image_url : `/static/${listing.image_url || 'images/placeholder.jpg'}`;
+                    
+                    const title = listing.title || 'Untitled';
+                    const price = listing.price || '0';
+                    const sellerName = (listing.seller && listing.seller.name) || 'Unknown Seller';
+                    const itemId = item.id || 0;
+                    const listingId = listing.id || 0;
+                    
+                    listingsGrid.innerHTML += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="${imageUrl}" class="card-img-top" alt="${title}" 
+                                style="height: 200px; object-fit: cover;"
+                                onerror="this.src='/static/images/placeholder.jpg'">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${title}</h5>
+                                <p class="card-text text-muted fw-bold">₹${price}</p>
+                                <p class="card-text">
+                                    <i class="fas fa-user me-1"></i>
+                                    <strong>Seller:</strong> ${sellerName}
+                                </p>
+                                <p class="card-text text-muted">
+                                    <small>
+                                        <i class="fas fa-heart wishlist-heart me-1"></i>
+                                        Added to wishlist
+                                    </small>
+                                </p>
+                                <div class="d-flex gap-2 mt-auto">
+                                    <button class="btn btn-primary btn-sm flex-grow-1" 
+                                        onclick="contactSeller(${listingId})">
+                                        <i class="fas fa-envelope me-1"></i>Contact
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm" 
+                                        onclick="viewListing(${listingId})" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" 
+                                        onclick="removeFromWishlist(${itemId})" title="Remove from Wishlist">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                });
+            })
+            .catch(error => {
+                console.error('Wishlist load error:', error);
+                listingsGrid.innerHTML = `
+                <div class="col-12 text-center">
+                    <div class="alert alert-danger">
+                        <h5>Error Loading Wishlist</h5>
+                        <p>${error.message}</p>
+                        <button class="btn btn-primary" onclick="initializeWishlistPage()">Try Again</button>
+                    </div>
+                </div>
+                `;
+                showAlert('Error', `Failed to load wishlist: ${error.message}`, 'error');
+            });
+        }
+        
+        // Enhanced removeFromWishlist function with better error handling
+        async function removeFromWishlist(wishlistId) {
+            try {
+                const result = await Swal.fire({
+                    title: 'Remove from Wishlist?',
+                    text: 'Are you sure you want to remove this item from your wishlist?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, remove it!',
+                    cancelButtonText: 'Cancel'
+                });
+               
+                if (result.isConfirmed) {
+                    // Show loading
+                    Swal.fire({
+                        title: 'Removing...',
+                        text: 'Please wait while we remove the item from your wishlist',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                    
+                    const response = await fetch(`/api/wishlist/${wishlistId}`, {
+                        method: 'DELETE',
+                        credentials: 'same-origin'
+                    });
+                   
+                    if (!response.ok) {
+                        const data = await response.json().catch(() => ({}));
+                        throw new Error(data.error || `HTTP error! status: ${response.status}`);
+                    }
+                   
+                    await Swal.fire({
+                        title: 'Removed!',
+                        text: 'The item has been removed from your wishlist.',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                   
+                    // Refresh the wishlist page
+                    initializeWishlistPage();
+                }
+            } catch (error) {
+                console.error('Remove from wishlist error:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Failed to remove item: ${error.message}`,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+        
+        // Enhanced viewListing function with better error handling
+        function viewListing(listingId) {
+            // Show loading
+            Swal.fire({
+                title: 'Loading...',
+                text: 'Fetching listing details',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            // Fetch the listing details
+            fetch(`/listings?id=${listingId}`, {
+                credentials: 'same-origin'
+            })
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Listing details:', data);
+                
+                if (!data.listings || data.listings.length === 0) {
+                    throw new Error('Listing not found');
+                }
+               
+                const listing = data.listings[0];
+                
+                // Create a modal to display the listing details
+                Swal.fire({
+                    title: listing.title || 'Listing Details',
+                    html: `
+                    <div class="text-center mb-3">
+                        <img src="${(listing.image_url && listing.image_url.startsWith('http')) ? listing.image_url : `/static/${listing.image_url || 'images/placeholder.jpg'}`}"
+                            class="img-fluid rounded" style="max-height: 300px;" alt="${listing.title || 'Listing'}"
+                            onerror="this.src='/static/images/placeholder.jpg'">
+                    </div>
+                    <div class="text-start">
+                        <p class="mb-2"><strong>Price:</strong> ₹${listing.price || '0'}</p>
+                        <p class="mb-2"><strong>Category:</strong> ${listing.category || 'Not specified'}</p>
+                        <p class="mb-2"><strong>Condition:</strong> ${listing.condition || 'Not specified'}</p>
+                        <p class="mb-2"><strong>Seller:</strong> ${(listing.seller && listing.seller.name) || 'Unknown Seller'}</p>
+                        <p class="mb-2"><strong>Description:</strong> ${listing.description || 'No description available'}</p>
+                    </div>
+                    `,
+                    width: '600px',
+                    showCancelButton: true,
+                    confirmButtonText: '<i class="fas fa-envelope me-2"></i>Contact Seller',
+                    cancelButtonText: 'Close',
+                    confirmButtonColor: '#007bff'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        contactSeller(listing.id);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error viewing listing:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: `Failed to load listing details: ${error.message}`,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+        }
+        
+        // Enhanced contactSeller function
+        async function contactSeller(listingId) {
+            if (!currentUser) {
+                showAlert('Please Login', 'You need to login to contact sellers', 'warning');
+                return;
+            }
+            
+            try {
+                // First get the listing details
+                const response = await fetch(`/listings?id=${listingId}`, {
+                    credentials: 'same-origin'
+                });
+                
+                if (!response.ok) throw new Error('Failed to fetch listing details');
+                
+                const data = await response.json();
+                const listing = data.listings[0];
+                
+                const { value: message } = await Swal.fire({
+                    title: 'Send Message to Seller',
+                    input: 'textarea',
+                    inputLabel: 'Your message',
+                    inputPlaceholder: 'Type your message here...',
+                    inputAttributes: {
+                        'aria-label': 'Type your message here'
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Send Message',
+                    showLoaderOnConfirm: true,
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'You need to write something!'
+                        }
+                    },
+                    preConfirm: (message) => {
+                        // This function runs when the user clicks "Send Message"
+                        return fetch('/api/messages/send', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            receiver_id: listing.seller.id,
+                            listing_id: listingId,
+                            content: message
+                        }),
+                        credentials: 'same-origin'
+                        })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Failed to send message');
+                            return response.json();
+                        })
+                        .catch(error => {
+                            Swal.showValidationMessage(`Request failed: ${error.message}`);
+                        });
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                });
+                
+                if (message) {
+                    // This runs after the message was successfully sent
+                    Swal.fire({
+                        title: 'Message Sent!',
+                        text: 'Your message has been sent to the seller.',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    
+                    // Optionally, you can open the chat modal to show the conversation
+                    setTimeout(() => {
+                        const chatModal = new bootstrap.Modal(document.getElementById('chatModal'));
+                        chatModal.show();
+                        // This will find and open the chat with the seller
+                        setTimeout(() => {
+                            const chatItems = document.querySelectorAll('.chat-item');
+                            const sellerName = listing.seller.name;
+                            for (const item of chatItems) {
+                                if (item.querySelector('h6').textContent === sellerName) {
+                                    item.click();
+                                    break;
+                                }
+                            }
+                        }, 500);
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Error contacting seller:', error);
+                showAlert('Error', error.message, 'error');
+            }
+        }
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check authentication first
+            await checkAuthStatus();
+            
+            // If user is authenticated, load wishlist
+            if (currentUser) {
+                initializeWishlistPage();
+            }
+        });
+    </script>
+</body>
+</html>
