@@ -18,6 +18,10 @@ from datetime import datetime, timedelta
 from waitress import serve
 from datetime import datetime, timezone
 import pytz
+from datetime import timedelta
+from flask import session  # Make sure this is imported
+from datetime import timedelta
+
 app = Flask(__name__)
 app.config.update(
     SECRET_KEY='your-secret-key-here',
@@ -40,7 +44,13 @@ app.config.update(
     MAIL_USE_TLS=True,
     MAIL_USERNAME='stud.studentsmart@gmail.com',
     MAIL_PASSWORD='jygr uhcl odmk flve',
-    MAIL_DEFAULT_SENDER=('StudentsMart', 'stud.studentsmart@gmail.com')
+    MAIL_DEFAULT_SENDER=('StudentsMart', 'stud.studentsmart@gmail.com'),
+    
+    # ADD THESE SESSION CONFIGURATIONS:
+    PERMANENT_SESSION_LIFETIME=timedelta(days=7),  # Sessions last 7 days
+    SESSION_COOKIE_SECURE=False,  # Set to True in production with HTTPS
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Lax'
 )
 def check_mail_configuration():
     required_configs = [
@@ -108,8 +118,10 @@ class Listing(db.Model):
     is_for_rent = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
+    
     # ONLY CHANGE: Added CASCADE DELETE to foreign key
     seller_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
+    
     
     # New fields
     product_type = db.Column(db.String(50))
@@ -655,30 +667,32 @@ def register():
 def login():
     try:
         data = request.form
-        
+       
         if not all(k in data for k in ['email', 'password']):
             return jsonify({
                 'error': 'Missing email or password',
                 'error_code': 'MISSING_FIELDS'
             }), 400
-
+            
         user = db.session.execute(db.select(User).filter_by(email=data['email'])).scalar_one_or_none()
-
+        
         if not user or not user.check_password(data['password']):
             return jsonify({
                 'error': 'Invalid email or password',
                 'error_code': 'INVALID_CREDENTIALS'
             }), 401
-
+            
         if not user.is_verified:
             return jsonify({
                 'error': 'Dear Student! could you please verify the link that sent to your mail',
                 'error_code': 'EMAIL_NOT_VERIFIED',
                 'email': user.email
             }), 401
-
-        login_user(user)
-
+            
+        # UPDATED: Add remember=True and make session permanent
+        login_user(user, remember=True)  # This will remember the user
+        session.permanent = True         # Make the session permanent
+        
         return jsonify({
             'message': 'Login successful',
             'user': {
@@ -688,10 +702,9 @@ def login():
                 'department': user.department,
                 'year': user.year,
                 'is_admin': user.is_admin,
-                'roll_number':user.roll_number
+                'roll_number': user.roll_number
             }
         })
-
     except Exception as e:
         return jsonify({
             'error': str(e),
@@ -2039,27 +2052,29 @@ def admin_update_report_status(report_id):
 
 # Create admin user on startup
 def create_admin_user():
-    # Check if admin already exists
-    admin = User.query.filter_by(email='admin@edutrade.co.in').first()
-    
-    # Only create admin if it doesn't exist
-    if not admin:
-        admin_user = User(
-            email='admin@studentsmart.co.in',
-            full_name='Admin User',
-            department='Admin',
-            year=1,
-            college='Admin College',
-            is_verified=True,
-            is_admin=True
-        )
-        admin_user.set_password('MentorlyXVemuXRcee@')  # Replace with your actual admin password
-        db.session.add(admin_user)
-        db.session.commit()
-        print("Admin user created successfully")
-    else:
-        print("Admin user already exists")
-
+    try:
+        # Check if admin already exists
+        admin = User.query.filter_by(email='admin@studentsmart.co.in').first()
+        
+        if not admin:
+            admin_user = User(
+                email='admin@studentsmart.co.in',
+                full_name='Admin User',
+                department='Admin',
+                year=1,
+                college='Admin College',
+                is_verified=True,
+                is_admin=True
+            )
+            admin_user.set_password('MentorlyXVemuXRcee@')
+            db.session.add(admin_user)
+            db.session.commit()
+            print("Admin user created successfully")
+        else:
+            print("Admin user already exists")
+    except Exception as e:
+        db.session.rollback()
+        print(f"Admin user creation failed or already exists: {str(e)}")
 @app.route('/debug/files/<int:listing_id>')
 @login_required
 def debug_file_paths(listing_id):
@@ -2604,10 +2619,16 @@ def send_message_notification():
             'error': 'Failed to process notification',
             'details': str(e)
         }), 500
+@app.route('/<filename>')
+def serve_html(filename):
+    if filename.endswith('.html') and os.path.exists(filename):
+        return send_file(filename)
+    else:
+        return "File not found", 404
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-        create_admin_user()
-    
+        
+        
        
-    app.run(host="0.0.0.0", port=80,debug=False)
+    app.run(host="0.0.0.0", port=80,debug=True)
